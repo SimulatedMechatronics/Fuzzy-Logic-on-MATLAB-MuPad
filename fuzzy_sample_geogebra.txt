@@ -1,0 +1,54 @@
+#This sample is on https://www.geogebra.org/ailtonbsj
+
+low = se(x<=0.25, 1,
+	se(0.25<=x<=0.45,1-(x-0.25)/(0.45-0.25),
+		se(0.45<=x,0)
+	)
+)
+
+mid = se(x<=0.25, 0,
+	se(0.25<=x<=0.5, (x-0.25)/(0.5-0.25),
+		se(0.5<=x<=0.75, 1-(x-0.5)/(0.75-0.5),
+			se(0.75<=x,0)
+		)
+	)
+)
+
+high = se(x<=0.55, 0,
+	se(0.55<=x<=0.75, (x-0.55)/(0.75-0.55),
+		se(0.75<=x, 1)
+	)
+)
+
+outNorm = se(x<=0.2,1,
+	se(0.2<x<=0.3,1-(x-0.2)/(0.3-0.2),
+		se(0.3<x,0)
+	)
+)
+
+marg = se(x<=0.2,0,
+	se(0.2<x<=0.3,(x-0.2)/(0.3-0.2),
+		se(0.3<x<=0.55,1,
+			se(0.55<x<=0.7,1-(x-0.55)/(0.7-0.55),
+				se(0.7<x, 0)
+			)
+		)
+	)
+)
+
+fail = se(x<=0.6,0,
+	se(0.6<=x<=0.8,(x-0.6)/(0.8-0.6),
+		se(0.8<x,1)
+	)
+)
+
+Q1 = se(outNorm <= muLow, outNorm, muLow)
+Q2 = se(marg <= muMid, marg, muMid)
+Q3 = se(fail <= muHigh, fail, muHigh)
+Qq = se(se(Q1 >= Q2, Q1, Q2) >= Q3,
+	se(Q1 >= Q2, Q1, Q2),Q3
+)
+
+A = integral(x*Qq(x),0,1)
+B = integral(Qq,0,1)
+Vo = A/B

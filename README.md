@@ -1,4 +1,4 @@
-# Thermometer with LM35, Keyboard and PIC
+# Fuzzy Logic on MATLAB MuPad
 
 ## Exemplo do Livro:
 "Digital Image Processing Using Matlab" 2ed Gonzalez
@@ -9,7 +9,7 @@ Página 128
 ### FUZZIFICACÃO
 #### Conjunto de Entrada:
    Baseado somente na Frequencia media de vibração (AVF)
-   
+
    {Low, Mid, High}
 #### Conjunto de Saída:
    Percentual de Abnormalidade do Motor (MOTOR)
